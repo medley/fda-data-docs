@@ -1,22 +1,24 @@
-# FDA Data MCP (Public Setup Docs)
+# FDA Data MCP
 
-Public setup/config repo for connecting AI agents to **FDA Data MCP** — a production MCP server for FDA facilities, recalls, inspections, 510(k), PMA, and company intelligence.
+**Connect AI agents to clean, queryable FDA data in minutes.**
 
-## Canonical links
+This repo is the public quickstart for the FDA Data MCP endpoint used by Claude, Cursor, Windsurf, and OpenAI-compatible agent workflows.
 
-- Website: https://www.regdatalab.com
-- MCP endpoint: `https://www.regdatalab.com/mcp`
-- Connect guide: https://www.regdatalab.com/connect.md
-- Tool docs: https://www.regdatalab.com/docs
-- LLM context: https://www.regdatalab.com/llms.txt
-- Full LLM context: https://www.regdatalab.com/llms-full.txt
-- Pricing / signup: https://www.regdatalab.com/pricing · https://www.regdatalab.com/signup
+- Canonical endpoint: `https://www.regdatalab.com/mcp`
+- Sign up for API key: https://www.regdatalab.com/signup
+- Full docs: https://www.regdatalab.com/docs
 
-## Quick start (Claude Code)
+---
+
+## 30-second quickstart (Claude Code)
 
 ```bash
 claude mcp add fda-data https://www.regdatalab.com/mcp --transport http --header "Authorization: Bearer YOUR_API_KEY"
 ```
+
+Then in Claude Code, run `/mcp` and confirm `fda-data` appears.
+
+---
 
 ## MCP config JSON (Claude Desktop / Cursor / Windsurf)
 
@@ -33,28 +35,61 @@ claude mcp add fda-data https://www.regdatalab.com/mcp --transport http --header
 }
 ```
 
-## What this MCP server covers
+---
 
-- FDA facility lookup + company resolution
-- Enforcement / recall search and traceability
-- 510(k) clearances, PMA approvals, Drugs@FDA, NDC
-- Inspection, citations, compliance action signals
-- LLM-friendly output with stable tool contracts
+## Verify it works
 
-## Discovery notes
+After connecting, ask your agent:
 
-This repository is intentionally lightweight and points to the canonical docs on **regdatalab.com**. For AI crawler discoverability, use:
+- “Find FDA facilities for Pfizer”
+- “Show recent FDA recalls for Medtronic”
+- “Search 510(k) clearances for product code XYZ”
 
-- `https://www.regdatalab.com/robots.txt`
-- `https://www.regdatalab.com/llms.txt`
-- `https://www.regdatalab.com/llms-full.txt`
-
-## Main product repository
-
-- `medley/fda-data` (private): core server, ingestion, and web app
+If you get structured results, setup is complete.
 
 ---
 
-If you find outdated examples using old Heroku URLs, replace with:
+## What you can do with FDA Data MCP
+
+- Company resolution + alias normalization
+- FDA facility lookup (drug/device registrations)
+- Recalls and enforcement actions
+- Inspections, citations, and compliance actions
+- 510(k), PMA, NDC, and Drugs@FDA workflows
+
+See all tools and parameters: https://www.regdatalab.com/docs#tools
+
+---
+
+## Common issues
+
+### 401 Unauthorized
+- Check your API key format and value
+- Confirm header is exactly: `Authorization: Bearer YOUR_API_KEY`
+
+### Connected, but no tools show
+- Re-open/restart your client
+- Re-run the add command and check `/mcp`
+
+### Old endpoint in examples
+Always use:
 
 `https://www.regdatalab.com/mcp`
+
+---
+
+## Canonical links
+
+- Website: https://www.regdatalab.com
+- Connect guide: https://www.regdatalab.com/connect.md
+- Tool docs: https://www.regdatalab.com/docs
+- LLM context: https://www.regdatalab.com/llms.txt
+- Full LLM context: https://www.regdatalab.com/llms-full.txt
+- Pricing: https://www.regdatalab.com/pricing
+
+---
+
+## Repo scope
+
+This repo is intentionally lightweight for public onboarding and discovery.
+Core product/server implementation is maintained in a separate private repository.
