@@ -29,7 +29,8 @@ Target repo shape:
 - trustworthy legal/support basics
 - machine-readable MCP marketplace files
 - no stale duplicate setup site
-- thin installable wrapper added only after trust and docs are fixed
+- thin install surface added only after trust and docs are fixed
+- prefer the existing `mcp-remote` pattern first; only build a branded wrapper package if marketplace requirements or distribution friction justify it
 
 ## Task 1: Rename and Reposition the Repo
 
@@ -323,9 +324,14 @@ git commit -m "feat: add MCP marketplace metadata"
 
 Do not build custom transport logic first. Prefer the existing `mcp-remote` pattern unless there is a clear reason not to.
 
+First-pass decision rule:
+
+- if marketplace metadata, one-click installs, and docs can be powered by `mcp-remote`, stop there
+- only add a branded package if you need a custom npm identity, tighter install UX, or registry-specific packaging later
+
 **Step 2: Define wrapper behavior**
 
-Wrapper should:
+If a branded wrapper is still needed, it should:
 
 - read `FDA_DATA_API_KEY`
 - connect to hosted endpoint
@@ -469,4 +475,3 @@ The upgrade is complete when:
 - Prefer one source of truth for setup/install copy.
 - Prefer small commits per task.
 - Validate every external URL before merging.
-
